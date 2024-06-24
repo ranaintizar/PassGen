@@ -6,7 +6,7 @@
 }
 
 /* Use for development */
-/* 
+/*
 body {
   width: 100vw;
   height: 100vh;
@@ -20,19 +20,104 @@ body {
   flex-direction: column;
   gap: 1rem;
   width: 400px;
-  padding: 1.25rem;
   border-radius: 0.75rem;
   box-shadow: #64646f33 0px 7px 29px 0px;
 }
 
-.header {
-  font-size: 1.25rem;
+.tab-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  list-style: none;
+  background-color: #fff;
 }
 
-.divider {
+.tab {
+  display: none;
+}
+
+.tab:checked:nth-of-type(1) ~ .tab__content:nth-of-type(1) {
+  opacity: 1;
+  transition: 0.5s opacity ease-in, 0.8s transform ease;
+  position: relative;
+  top: 0;
+  z-index: 100;
+  transform: translateY(0px);
+}
+
+.tab:checked:nth-of-type(2) ~ .tab__content:nth-of-type(2) {
+  opacity: 1;
+  transition: 0.5s opacity ease-in, 0.8s transform ease;
+  position: relative;
+  top: 0;
+  z-index: 100;
+  transform: translateY(0px);
+}
+
+.tab:first-of-type:not(:last-of-type) + label {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.tab:not(:first-of-type):not(:last-of-type) + label {
+  border-radius: 0;
+}
+
+.tab:last-of-type:not(:first-of-type) + label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.tab:checked + label {
+  background-color: #fff;
+  box-shadow: 0 -1px 0 #fff inset;
+  cursor: default;
+}
+
+.tab:checked + label:hover {
+  box-shadow: 0 -1px 0 #fff inset;
+  background-color: #fff;
+}
+
+.tab + label {
+  display: block;
+  box-shadow: 0 -1px 0 #eee inset;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #333;
+  flex-grow: 3;
+  text-align: center;
+  background-color: #f2f2f2;
+  user-select: none;
+  transition: 0.3s background-color ease, 0.3s box-shadow ease;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.tab + label:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 0 #f4f4f4 inset;
+}
+
+.tab__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 0.75rem;
+  padding: 10px 20px;
+  background-color: transparent;
+  position: absolute;
   width: 100%;
-  height: 1.5px;
-  background: #ccc;
+  min-height: 350px;
+  z-index: -1;
+  opacity: 0;
+  left: 0;
+  transform: translateY(-3px);
 }
 
 .inputBox {
@@ -53,11 +138,11 @@ body {
   letter-spacing: 1px;
 }
 
-.inputBox .copyIcon {
+.copyIcon {
   cursor: pointer;
 }
 
-.inputBox #check {
+#check {
   color: #4bb543;
 }
 
@@ -69,7 +154,7 @@ body {
 }
 
 .passIndicator::after {
-  content: "";
+  content: '';
   position: absolute;
   height: 100%;
   transition: width 0.3s;
@@ -104,6 +189,7 @@ body {
 
 .passLength .lenContainer .label {
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .passLength .lenContainer span {
@@ -116,6 +202,7 @@ body {
 
 .passSettings .label {
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .passSettings .options {
@@ -153,13 +240,19 @@ body {
 
 .btn {
   border: none;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid #1e90ff;
-  font-size: 1.1rem;
-  color: #1e90ff;
-  background: #fff;
+  font-size: 1rem;
+  background: #1e90ff;
+  color: #fff;
   cursor: pointer;
+}
+
+.clear-btn {
+  border-color: #ef0107;
+  background: #fff;
+  color: #ef0107;
 }
 
 .btn:active {
@@ -167,6 +260,34 @@ body {
 }
 
 .btn:hover {
-  background: #1e90ff;
-  color: #fff;
+  opacity: 0.75;
+}
+
+.clear-btn:hover {
+  opacity: 1;
+}
+
+.passList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.passList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  background: #f2f2f2;
+  border-radius: 0.5rem;
+}
+
+.emptyListMsg {
+  padding-top: 1rem;
+  font-size: 1rem;
+  text-align: center;
 }

@@ -3,6 +3,7 @@
   "name": "PassGen",
   "description": "Strengthen your online security with 'PassGen'! Create strong, custom passwords in seconds. Lowercase, Uppercase, Numbers, Symbols – your choice. Stay protected effortlessly!",
   "version": "1.0",
+  "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Generate Password",
