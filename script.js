@@ -32,7 +32,7 @@ const displayPasswords = () => {
     const passwordList = document.getElementById('passwordList')
     passwordList.innerHTML = '' // Clear current list
     result.passwords.forEach((password, i) => {
-      const id = copyBtn + i
+      const id = 'copyBtn' + i
       const li = document.createElement('li')
       li.textContent = password
       passwordList.appendChild(li)
@@ -116,6 +116,8 @@ const copyPassword = (value, btnId) => {
 
 lengthSlider.addEventListener('input', updateLength)
 btn.addEventListener('click', generatePassword)
-copyBtn.addEventListener('click', () => copyPassword(passInput.value, copyBtn))
+copyBtn.addEventListener('click', () =>
+  copyPassword(passInput.value, 'copyBtn')
+)
 radioBtn.addEventListener('change', displayPasswords)
 clearPasswordBtn.addEventListener('click', clearSavePasswords)
